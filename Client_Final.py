@@ -38,8 +38,6 @@ def send(s,serverip):
     cam.release()
 
 
-# In[8]:
-
 
 def receive(s,serverip):
     data = b""
