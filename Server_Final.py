@@ -1,15 +1,10 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
 
 import socket
 import sys
 import cv2
 import pickle
 import numpy as np
-import struct ## new
+import struct 
 import zlib
 import io
 import time
@@ -22,9 +17,6 @@ port=2222
 ip=""
 s.bind((ip,port))
 s.listen()
-
-
-# In[ ]:
 
 
 def receive(csession,addr):
@@ -50,9 +42,6 @@ def receive(csession,addr):
         frame = cv2.imdecode(frame, cv2.IMREAD_COLOR)
         cv2.imshow('ImageWindow',frame)
         cv2.waitKey(1)
-
-
-# In[ ]:
 
 
 def send(csession,addr):
@@ -83,9 +72,6 @@ def send(csession,addr):
     
 
 
-# In[ ]:
-
-
 while True:
     csession,addr=s.accept()
     t1=threading.Thread(target=receive,args=(csession,addr))
@@ -93,8 +79,6 @@ while True:
     t1.start()
     t2.start()
 
-
-# In[ ]:
 
 
 
