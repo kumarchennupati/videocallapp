@@ -1,24 +1,14 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[6]:
-
-
 import socket
 import sys
 import cv2
 import pickle
 import numpy as np
-import struct ## new
+import struct
 import zlib
 import io
 import time
 import threading
 
-
-
-
-# In[7]:
 
 
 def send(s,serverip):
@@ -76,9 +66,6 @@ def receive(s,serverip):
         cv2.waitKey(1)
 
 
-# In[9]:
-
-
 import socket
 s=socket.socket()
 serverip="192.168.1.7"
@@ -89,14 +76,6 @@ t2=threading.Thread(target=send,args=(s,serverip))
 t2.start()
 t1.start()
 
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
 
 
 
