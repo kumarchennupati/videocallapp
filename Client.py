@@ -35,7 +35,10 @@ def receive(s,serverip):
         frame=pickle.loads(frame_data, fix_imports=True, encoding="bytes")
         frame = cv2.imdecode(frame, cv2.IMREAD_COLOR)
         cv2.imshow('ImageWindow',frame)
-        cv2.waitKey(1)
+        if cv2.waitKey(1) == 27:
+            break
+    cv2.destroyAllWindows()
+
 
 
 import socket
