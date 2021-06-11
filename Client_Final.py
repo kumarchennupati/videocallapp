@@ -1,22 +1,14 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import socket
 import cv2
 import pickle
 import struct 
 import threading
 
+
 s=socket.socket()
 serverip="4.tcp.ngrok.io"
 serverport=13255
 s.connect((serverip,serverport))
-
-
-# In[2]:
 
 
 def send(s,serverip):
@@ -31,9 +23,6 @@ def send(s,serverip):
         size = len(data)
         s.sendall(struct.pack(">L", size) + data)
     cam.release()
-
-
-# In[3]:
 
 
 def receive(s,serverip):
@@ -58,24 +47,9 @@ def receive(s,serverip):
             break
     cv2.destroyAllWindows()
 
-
-# In[4]:
-
-
+    
 t1=threading.Thread(target=receive,args=(s,serverip))
 t2=threading.Thread(target=send,args=(s,serverip))
 t2.start()
 t1.start()
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
