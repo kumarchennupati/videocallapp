@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import socket
 import cv2
 import pickle
@@ -18,16 +12,13 @@ s.bind((ip,port))
 s.listen()
 
 
-# In[2]:
-
-
 def receive(csession,addr):
     data = b""
     payload_size = struct.calcsize(">L")
     while True:
         while len(data) < payload_size:
             data += csession.recv(4096)
-
+            
         packed_msg_size = data[:payload_size]
         data = data[payload_size:]
         msg_size = struct.unpack(">L", packed_msg_size)[0]
@@ -43,10 +34,7 @@ def receive(csession,addr):
             break
     cv2.destroyAllWindows()
 
-
-# In[3]:
-
-
+    
 def send(csession,addr):
     connection = csession.makefile('wb')
     cam = cv2.VideoCapture('http://192.168.1.4:8080/video')
@@ -62,19 +50,10 @@ def send(csession,addr):
     cam.release()
 
 
-# In[ ]:
-
-
 while True:
     csession,addr=s.accept()
     t1=threading.Thread(target=receive,args=(csession,addr))
     t2=threading.Thread(target=send,args=(csession,addr))
     t1.start()
     t2.start()
-
-
-# In[ ]:
-
-
-
 
